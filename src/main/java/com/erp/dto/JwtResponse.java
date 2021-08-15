@@ -7,8 +7,8 @@ public class JwtResponse {
 	private String type = "Basic";
 	private Long id;
 	private String username;
-	private String password;
 	private List roles;
+	private List<Menus> menus;
 	
 	
 	public JwtResponse() {
@@ -21,13 +21,13 @@ public class JwtResponse {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public JwtResponse(String token, Long id, String username, String password, List roles) {
+	public JwtResponse(String token, Long id, String username, List roles , List<Menus> menus) {
 		super();
 		this.token = token;
 		this.id = id;
 		this.username = username;
-		this.password = password;
 		this.roles = roles;
+		this.menus = menus;
 	}
 	public String getToken() {
 		return token;
@@ -47,16 +47,20 @@ public class JwtResponse {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	public List getRoles() {
 		return roles;
 	}
 	public void setRoles(List roles) {
 		this.roles = roles;
 	}
+	public List<Menus> getMenus() {
+		return menus;
+	}
+	public void setMenus(List<Menus> menus) {
+		this.menus = menus;
+	}
+
+	
+	
+	
 }

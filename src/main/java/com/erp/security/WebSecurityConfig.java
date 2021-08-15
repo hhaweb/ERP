@@ -1,5 +1,11 @@
 package com.erp.security;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +22,10 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 import com.erp.service.UserDetailsServiceImpl;
 import org.slf4j.Logger;
@@ -48,12 +58,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		// Enable CORS and disable CSRF
-		http = http.cors().and().csrf().disable();
+		http = http.cors().configurationSource(new CorsConfigurationSource() {
 
+			@Override
+			public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
+				CorsConfiguration config = new CorsConfiguration();
+				config.setAllowedHeaders(Collections.singletonList("*"));
+				config.setAllowedMethods(Collections.singletonList("*"));
+				config.addAllowedOrigin("http://localhost:4200");
+				config.setAllowCredentials(true);
+				return config;
+			}
+		}).and().csrf().disable();
+		
 		// Set session management to stateless
 		http = http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and();
 

@@ -1,0 +1,29 @@
+[
+	{
+		"label": "CRM",
+		"icon": "info-circle",
+		"items": [
+			{
+				"label": "Add Customer",
+				"icon": "user-friends",
+				"routerLink": [
+					"/customer/customer-entry"
+				]
+			},
+			{
+				"label": "Customer List",
+				"icon": "user-friends",
+				"routerLink": [
+					"/customer/customer-list"
+				]
+			}
+		]
+	},
+	{
+		"label": "Home",
+		"icon": "info-circle",
+		"routerLink": [
+			"/home"
+		]
+	}
+]

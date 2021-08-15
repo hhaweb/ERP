@@ -6,7 +6,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,17 +25,16 @@ import com.erp.dao.Role;
 import com.erp.dao.User;
 import com.erp.dto.JwtResponse;
 import com.erp.dto.LoginModel;
+import com.erp.dto.Menus;
 import com.erp.dto.MessageResponse;
 import com.erp.dto.SignupRequest;
+import com.erp.dto.SystemConfig;
 import com.erp.repository.RoleRepository;
 import com.erp.repository.UserRepository;
 import com.erp.service.UserDetailsImpl;
 import com.erp.util.JwtUtils;
 
-
-
-
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -48,10 +46,11 @@ public class AuthController {
 	RoleRepository roleRepository;
 	@Autowired
 	JwtUtils jwtUtils;
+	
 	@Autowired
 	PasswordEncoder encoder;
 	
-	@PostMapping("/signin")
+	@PostMapping("/Login")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginModel loginRequest) {
 
 		Authentication authentication = authenticationManager.authenticate(
@@ -59,17 +58,18 @@ public class AuthController {
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = jwtUtils.generateJwtToken(authentication);
-		
+		List<Menus> menu = jwtUtils.getMenuItem();
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();		
 		List<String> roles = userDetails.getAuthorities().stream()
 				.map(item -> item.getAuthority())
 				.collect(Collectors.toList());
-
+		
 		return ResponseEntity.ok(new JwtResponse(jwt, 
 												 userDetails.getId(), 
 												 userDetails.getUsername(), 
-												 userDetails.getEmail(), 
-												 roles));
+												 roles,
+												 menu
+												 ));
 	}
 
 	@PostMapping("/signup")
@@ -128,9 +128,13 @@ public class AuthController {
 	}
 	
 	
-	
-	@GetMapping("/test")
-	public String test() {
-		return "Hello";
+	@GetMapping("/GetSystemConfig")
+	public ResponseEntity<?> GetSystemConfig() {
+		List<Menus> menuList = jwtUtils.getMenuItem();
+		SystemConfig sysConfig = new SystemConfig();
+		sysConfig.setMenus(menuList);
+		return ResponseEntity.ok(sysConfig);
 	}
+	
+	
 }
