@@ -21,18 +21,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.erp.config.ERole;
-import com.erp.dao.Role;
-import com.erp.dao.User;
-import com.erp.dto.JwtResponse;
-import com.erp.dto.LoginModel;
-import com.erp.dto.Menus;
-import com.erp.dto.MessageResponse;
-import com.erp.dto.SignupRequest;
-import com.erp.dto.SystemConfig;
+import com.erp.entity.Role;
+import com.erp.entity.User;
 import com.erp.repository.RoleRepository;
 import com.erp.repository.UserRepository;
 import com.erp.service.UserDetailsImpl;
 import com.erp.util.JwtUtils;
+import com.erp.util.dto.JwtResponse;
+import com.erp.util.dto.LoginModel;
+import com.erp.util.dto.Menus;
+import com.erp.util.dto.MessageResponse;
+import com.erp.util.dto.SignupRequest;
+import com.erp.util.dto.SystemConfig;
 
 @CrossOrigin("*")
 @RestController
@@ -55,7 +55,6 @@ public class AuthController {
 
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = jwtUtils.generateJwtToken(authentication);
 		List<Menus> menu = jwtUtils.getMenuItem();

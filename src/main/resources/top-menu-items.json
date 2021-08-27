@@ -20,6 +20,19 @@
 		]
 	},
 	{
+		"label": "Item",
+		"icon": "info-circle",
+		"items": [
+			{
+				"label": "Item List",
+				"icon": "fa-list-ul",
+				"routerLink": [
+					"/item/item-list"
+				]
+			}
+		]
+	},
+	{
 		"label": "Home",
 		"icon": "info-circle",
 		"routerLink": [

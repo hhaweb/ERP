@@ -2,10 +2,12 @@ package com.erp.repository;
 
 import java.util.Optional;
 
-import org.springframework.data.repository.CrudRepository;
-import com.erp.dao.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends CrudRepository<User, Integer>{
+
+import com.erp.entity.User;
+
+public interface UserRepository extends JpaRepository<User, Integer>{
 	Optional<User> findByUsername(String username);
 	Boolean existsByUsername(String username);
 	Boolean existsByEmail(String email);

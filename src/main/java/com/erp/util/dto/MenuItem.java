@@ -1,15 +1,15 @@
-package com.erp.dto;
+package com.erp.util.dto;
 
 import java.util.List;
 
-public class Item {
+public class MenuItem {
 	public String label;
     public String icon;
     public List<String> routerLink;
     
     
     
-	public Item() {
+	public MenuItem() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

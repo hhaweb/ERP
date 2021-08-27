@@ -1,11 +1,11 @@
-package com.erp.dto;
+package com.erp.util.dto;
 
 import java.util.List;
 
 public class Menus {
 	public String label;
     public String icon;
-    public List<Item> items;
+    public List<MenuItem> items;
 	public Menus() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -22,10 +22,10 @@ public class Menus {
 	public void setIcon(String icon) {
 		this.icon = icon;
 	}
-	public List<Item> getItems() {
+	public List<MenuItem> getItems() {
 		return items;
 	}
-	public void setItems(List<Item> items) {
+	public void setItems(List<MenuItem> items) {
 		this.items = items;
 	}
     

@@ -1,10 +1,10 @@
-package com.erp.dto;
+package com.erp.util.dto;
 
 import java.util.List;
 
 public class JwtResponse {
 	private String token;
-	private String type = "Basic";
+	private String type = "Bearer";
 	private Long id;
 	private String username;
 	private List roles;

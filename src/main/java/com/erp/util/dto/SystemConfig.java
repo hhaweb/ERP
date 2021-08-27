@@ -1,4 +1,4 @@
-package com.erp.dto;
+package com.erp.util.dto;
 
 import java.util.List;
 
