@@ -1,20 +1,20 @@
-[
+[ 
 	{
-		"label": "CRM",
-		"icon": "info-circle",
+		"label": "Customer",
+		"icon": "pi pi-users",
 		"items": [
 			{
-				"label": "Add Customer",
-				"icon": "user-friends",
+				"label": "Customer List",
+				"icon": "pi pi-fw pi-list",
 				"routerLink": [
-					"/customer/customer-entry"
+					"/customer/customer-list"
 				]
 			},
 			{
-				"label": "Customer List",
-				"icon": "user-friends",
+				"label": "Supplier List",
+				"icon": "pi pi-fw pi-list",
 				"routerLink": [
-					"/customer/customer-list"
+					"/customer/supplier-list"
 				]
 			}
 		]
@@ -25,7 +25,7 @@
 		"items": [
 			{
 				"label": "Item List",
-				"icon": "fa-list-ul",
+				"icon": "pi pi-fw pi-list",
 				"routerLink": [
 					"/item/item-list"
 				]
@@ -33,10 +33,25 @@
 		]
 	},
 	{
-		"label": "Home",
-		"icon": "info-circle",
-		"routerLink": [
-			"/home"
+		"label": "Sale",
+		"icon": "pi pi-shopping-cart",
+		"items": [
+			{
+				"label": "Sale List",
+				"icon": "pi pi-fw pi-list",
+				"routerLink": [
+				"/sale/sale-list"
+				]
+			},
+			{
+				"label": "Payment List",
+				"icon": "pi pi-fw pi-list",
+				"routerLink": [
+				"/sale/payment-list"
+				]
+			}
 		]
-	}
+		
+	},
+	  
 ]

@@ -11,4 +11,6 @@ public interface CustomerService {
 	List<Customer> getAllCustomer();
 	GenericResponse saveCustomer(CustomerDto customerDto);
 	GenericResponse deleteCustomer(Long Id);
+	Customer getCustomerById(Long id);
+	
 }

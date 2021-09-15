@@ -1,5 +1,6 @@
 package com.erp.dto;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,6 +20,7 @@ public class CustomerDto extends BaseDto{
 	private String phone;
 	private String mobile;
 	private String address;
+	private String remark;
 	
 	public Customer getEntity() throws ParseException {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -39,6 +41,7 @@ public class CustomerDto extends BaseDto{
 		customer.setAddress(this.address);
 		customer.setPhone(this.phone);
 		customer.setMobile(this.mobile);
+		customer.setRemark(this.remark);
 		return customer;		
 	}
 	

@@ -1,10 +1,12 @@
 package com.erp.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,17 +23,18 @@ public class Customer extends BaseEntity implements Serializable {
 	 */
 	private static final long serialVersionUID = -4407223471176992500L;
 	
-	@Column(name = "Name")
+	@Column(name = "name")
 	private String name;
 	
-	@Column(name = "Address")
+	@Column(name = "address")
 	private String address;
 	
-	@Column(name = "Phone")
+	@Column(name = "phone")
 	private String phone;
 
-	@Column(name = "Mobile")
+	@Column(name = "mobile")
 	private String Mobile;
-		
 	
+	@Column(name = "remark")
+	private String remark;
 }

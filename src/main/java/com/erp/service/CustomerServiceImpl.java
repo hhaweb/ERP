@@ -10,6 +10,7 @@ import com.erp.config.ResponseMessage;
 import com.erp.dto.CustomerDto;
 import com.erp.entity.Customer;
 import com.erp.repository.CustomerRepository;
+import com.erp.repository.SaleRepository;
 import com.erp.util.dto.GenericResponse;
 import com.erp.util.dto.MessageResponse;
 
@@ -17,6 +18,7 @@ import com.erp.util.dto.MessageResponse;
 public class CustomerServiceImpl implements CustomerService{
 	@Autowired
 	private CustomerRepository customerRepo;
+
 	
 
 	@Override
@@ -43,5 +45,13 @@ public class CustomerServiceImpl implements CustomerService{
 		return new GenericResponse(false,ResponseMessage.DELETE_SUCCESS);
 		
 	}
+
+	@Override
+	public Customer getCustomerById(Long id) {
+		// TODO Auto-generated method stub
+		return customerRepo.findById(id).get();
+	}
+
+
 
 }

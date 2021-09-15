@@ -1,12 +1,20 @@
 package com.erp.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 @Entity
 @Table(name = "Item")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Item extends BaseEntity implements Serializable{
 	
 	/**
@@ -16,23 +24,7 @@ public class Item extends BaseEntity implements Serializable{
 	
 	@Column(name = "name")
 	private String name;
-
-	
-	
-	public Item() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-
-	
+	@Column(name = "price")
+	private BigDecimal price;
 
 }

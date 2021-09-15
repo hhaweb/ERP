@@ -12,4 +12,5 @@ public interface ItemService {
 
 	public GenericResponse saveItem(ItemDto itemDto);
 	public List<Item> getAllItems();
+	public GenericResponse deleteItem(Long Id);
 }

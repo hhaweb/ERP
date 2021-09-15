@@ -1,73 +1,48 @@
 package com.erp.dto;
 
 
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 import com.erp.entity.Item;
 
-public class ItemDto {
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-	private Long Id;
+@Getter
+@Setter
+@NoArgsConstructor
+public class ItemDto extends BaseDto {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
-	private String createdDate;
-	private String updatedDate;
-	
-	
-	
-	public ItemDto() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
+	private BigDecimal price;
+		
 	public Item getEntity() throws ParseException {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		Date currentDate = new Date();
 		Item item = new Item();
-		if(this.Id == null) {
+		if(this.id == null) {
 			item.setCreatedDate(currentDate);
 			item.setUpdateDate(currentDate);
 		} else {
-			item.setId(this.Id);
+			item.setId(this.id);
 			item.setCreatedDate(df.parse(this.createdDate));
-			item.setUpdateDate(currentDate);
+			item.setUpdateDate(currentDate);			
 		}	
-		item.setName(this.name);	
+		item.setName(this.name);
+		item.setPrice(this.price);
+		
 		return item;
 	}
-	
-	public Long getId() {
-		return Id;
-	}
-	public void setId(Long id) {
-		Id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getCreatedDate() {
-		return createdDate;
-	}
-
-	public void setCreatedDate(String createdDate) {
-		this.createdDate = createdDate;
-	}
-
-	public String getUpdatedDate() {
-		return updatedDate;
-	}
-
-	public void setUpdatedDate(String updatedDate) {
-		this.updatedDate = updatedDate;
-	}
-
 	
 	
 }
