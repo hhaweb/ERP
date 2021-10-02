@@ -38,7 +38,7 @@ public class CustomerController {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new GenericResponse(false, ResponseMessage.INTERNAL_ERROR); // test a
+			return new GenericResponse(false, ResponseMessage.INTERNAL_ERROR); // test a a
 		}
 	}
 
