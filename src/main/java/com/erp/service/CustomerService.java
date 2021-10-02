@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.erp.dto.CustomerDto;
 import com.erp.entity.Customer;
+import com.erp.entity.Supplier;
 import com.erp.util.dto.GenericResponse;
 
 public interface CustomerService {
@@ -12,5 +13,6 @@ public interface CustomerService {
 	GenericResponse saveCustomer(CustomerDto customerDto);
 	GenericResponse deleteCustomer(Long Id);
 	Customer getCustomerById(Long id);
+	Supplier getSupplierById(Long supplierId);
 	
 }

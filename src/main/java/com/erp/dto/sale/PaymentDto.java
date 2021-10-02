@@ -24,7 +24,8 @@ public class PaymentDto extends BaseDto {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+	private Long paymentId;
+	private String customerName;
 	private Long customerId;
 	private Customer customer;
 	private String payDate;
@@ -84,8 +85,6 @@ public class PaymentDto extends BaseDto {
 	}
 
 
-
-
 	public PaymentDto(Long customerId, String payDate, BigDecimal payAmount, Long saleId) {
 		super();
 		this.customerId = customerId;
@@ -94,6 +93,21 @@ public class PaymentDto extends BaseDto {
 		this.saleId = saleId;
 	}
 	
+	
+	public PaymentDto(Payment payment) {
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		this.paymentId = payment.getId();
+		this.customerId = payment.getCustomer().getId();
+		this.customerName = payment.getCustomer().getName();
+		this.saleId = payment.getSale().getId();
+		this.payAmount = payment.getPayAmount();
+		this.payDate = df.format(payment.getPayDate());
+		this.remark = payment.getRemark();
+		this.createdDate = df.format(payment.getCreatedDate());
+		this.updatedDate = df.format(payment.getUpdateDate());
+		
+		
+	}
 	
 
 }

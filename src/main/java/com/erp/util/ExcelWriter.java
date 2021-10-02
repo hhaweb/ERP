@@ -56,8 +56,8 @@ public class ExcelWriter {
 				createCellWithString(row.createCell(1), sale.getCustomerName(), null);
 				createCellWithDate(row.createCell(2),sale.getOrderDate(),dateCellStype);
 				
-				createCellWithCurrency(row.createCell(3),sale.getDebit(), currencyCellStyle);
-				createCellWithCurrency(row.createCell(4),sale.getCredit(), currencyCellStyle);
+				createCellWithCurrency(row.createCell(3),sale.getPayAmount(), currencyCellStyle);
+				createCellWithCurrency(row.createCell(4),sale.getCreditAmount(), currencyCellStyle);
 				createCellWithCurrency(row.createCell(5),sale.getTotalAmount(), currencyCellStyle);
 			}
 			Row row = sheet.createRow(rowIndex);

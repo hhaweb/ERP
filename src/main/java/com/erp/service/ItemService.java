@@ -11,6 +11,6 @@ import com.erp.util.dto.GenericResponse;
 public interface ItemService {
 
 	public GenericResponse saveItem(ItemDto itemDto);
-	public List<Item> getAllItems();
+	public List<Item> getAllItems(boolean checkClosing);
 	public GenericResponse deleteItem(Long Id);
 }

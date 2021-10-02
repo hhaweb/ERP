@@ -60,30 +60,35 @@ public class CustomerController {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			return new GenericResponse(false, ResponseMessage.INTERNAL_ERROR);
- 
+
 		}
 	}
-	
+
 	@GetMapping("/supplier-list")
 	public List<Supplier> getAllSupplier() {
 		return supplierService.getAllSupplier();
-		
+
 	}
-	
+
 	@GetMapping("/supplier-delete")
 	public GenericResponse deleteSupplier(Long Id) {
 		try {
 			supplierService.deleteSupplier(Id);
 			return new GenericResponse(true, ResponseMessage.DELETE_SUCCESS);
-		}catch(Exception ex) {
+		} catch (Exception ex) {
 			ex.printStackTrace();
 			return new GenericResponse(false, ResponseMessage.INTERNAL_ERROR);
 		}
 	}
-	
+
 	@GetMapping("/get-customer-by-id")
 	public Customer getCustomerById(@RequestParam("id") Long id) {
 		Customer customer = customerService.getCustomerById(id);
 		return customer;
+	}
+
+	@GetMapping("/get-supplier-by-id")
+	public Supplier getSupplierById(@RequestParam("supplierId") Long supplierId) {
+		return customerService.getSupplierById(supplierId);
 	}
 }

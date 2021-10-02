@@ -38,13 +38,13 @@ public class SaleDto extends BaseDto {
     private Boolean status;
   
     // total amoutn of sale (one sale)
-    private BigDecimal credit;
+    private BigDecimal creditAmount;
     private BigDecimal payAmount;
-    private BigDecimal total;
+    private BigDecimal totalAmount;
     
     // total amount of customer
-	private BigDecimal totalCredit;
-	private BigDecimal totalDebit;
+	private BigDecimal totalCreditAmount;
+	private BigDecimal totalPayAmount;
 	private BigDecimal totalSaleAmount;
 	
 	
@@ -70,8 +70,6 @@ public class SaleDto extends BaseDto {
 		Customer customer = new Customer();
 		customer.setId(this.customerId);
 		sale.setCustomer(customer);
-		sale.setDebit(this.payAmount);
-
 		BigDecimal totalAmount = BigDecimal.ZERO;
 		List<SaleItem> saleItemList = new ArrayList<SaleItem>();
 		for (SaleItemDto saleItemDto : saleItemListDto) {
@@ -98,9 +96,8 @@ public class SaleDto extends BaseDto {
 			saleItemList.add(saleItem);
 		}
 		saleItemList.remove(null);
-		sale.setSaleItem(saleItemList);
+		sale.setSaleItemList(saleItemList);
 		sale.setTotalAmount(totalAmount);
-		sale.setCredit(totalAmount.subtract(this.payAmount));
 		sale.setOrderDate(df.parse(this.orderDate));
 		sale.setUpdateDate(currentDate);
 		return sale;
@@ -108,13 +105,13 @@ public class SaleDto extends BaseDto {
 	}
 
 	
-	public SaleDto(Sale sale, BigDecimal totalCredit, BigDecimal totalDebit, BigDecimal totalSaleAmount) {
+	public SaleDto(Sale sale, BigDecimal previousTotalCredit, BigDecimal payAmount) {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		this.id = sale.getId();
 		this.customerId = sale.getCustomer().getId();
 		this.orderDate = df.format(sale.getOrderDate());
 		this.saleItemListDto = new ArrayList<SaleItemDto>();
-		for(SaleItem item : sale.getSaleItem()) {
+		for(SaleItem item : sale.getSaleItemList()) {
 			SaleItemDto itemDto = new SaleItemDto();
 			itemDto.setId(item.getId());
 			itemDto.setItemId(item.getItem().getId());
@@ -124,15 +121,17 @@ public class SaleDto extends BaseDto {
 			this.saleItemListDto.add(itemDto);
 		}
 		
-		this.totalCredit = totalCredit;
-		this.totalDebit = totalDebit;
-		this.totalSaleAmount = totalSaleAmount;
+		
+		this.totalCreditAmount = previousTotalCredit;
+	
 		this.createdDate = df.format(sale.getCreatedDate());
 		this.updatedDate = df.format(sale.getUpdateDate());
 		this.status = sale.getStatus() == 1 ? true : false;
-		this.payAmount = sale.getDebit();
-		this.credit = sale.getCredit();
-		this.total = sale.getTotalAmount();
+		
+		this.totalAmount = sale.getTotalAmount();
+		this.payAmount = payAmount;
+		this.creditAmount = this.totalAmount.subtract(this.payAmount);
+		
 		this.customer = sale.getCustomer();
 		this.remark = "";
 	}

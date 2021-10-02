@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import com.erp.config.ResponseMessage;
 import com.erp.dto.CustomerDto;
 import com.erp.entity.Customer;
+import com.erp.entity.Supplier;
 import com.erp.repository.CustomerRepository;
 import com.erp.repository.SaleRepository;
+import com.erp.repository.SupplierRepository;
 import com.erp.util.dto.GenericResponse;
 import com.erp.util.dto.MessageResponse;
 
@@ -18,7 +20,8 @@ import com.erp.util.dto.MessageResponse;
 public class CustomerServiceImpl implements CustomerService{
 	@Autowired
 	private CustomerRepository customerRepo;
-
+	@Autowired
+	private SupplierRepository supplierRepo;
 	
 
 	@Override
@@ -49,7 +52,13 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public Customer getCustomerById(Long id) {
 		// TODO Auto-generated method stub
-		return customerRepo.findById(id).get();
+		return customerRepo.findById(id).orElse(null);
+	}
+
+	@Override
+	public Supplier getSupplierById(Long supplierId) {
+		// TODO Auto-generated method stub
+		return supplierRepo.findById(supplierId).orElse(null);
 	}
 
 

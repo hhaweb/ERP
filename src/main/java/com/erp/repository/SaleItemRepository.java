@@ -6,13 +6,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.erp.dto.SelectItem;
 import com.erp.entity.Item;
 import com.erp.entity.sale.SaleItem;
 @Repository
-public interface ItemRepository extends	JpaRepository<Item, Long> {
+public interface SaleItemRepository extends JpaRepository<SaleItem, Long>{
 	
+	@Query(value = "select * from erp.sale_item where sale_id=?1", nativeQuery = true)
+	List<SaleItem> getSaleItemBySaleId(long saleId);
 	
-	@Query(value = "select * from item where id in (select item_id from closing where qty > 0)", nativeQuery = true)
-	List<Item> getAllItemWithClosing();
+	List<SaleItem> findByItem(Item item);
 }

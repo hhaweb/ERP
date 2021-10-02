@@ -24,7 +24,8 @@ public class ItemDto extends BaseDto {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String name;
-	private BigDecimal price;
+	private BigDecimal sellPrice;
+	private BigDecimal buyPrice;
 		
 	public Item getEntity() throws ParseException {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -39,8 +40,8 @@ public class ItemDto extends BaseDto {
 			item.setUpdateDate(currentDate);			
 		}	
 		item.setName(this.name);
-		item.setPrice(this.price);
-		
+		item.setSellPrice(this.sellPrice);
+		item.setBuyPrice(this.buyPrice);	
 		return item;
 	}
 	

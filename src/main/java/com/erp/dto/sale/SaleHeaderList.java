@@ -7,8 +7,8 @@ public interface SaleHeaderList {
 	  Long getId();
 	  Long getCustomerId();
 	  String getCustomerName();
-	  BigDecimal getDebit();
-	  BigDecimal getCredit();
+	  BigDecimal getPayAmount();
+	  BigDecimal getCreditAmount();
 	  BigDecimal getTotalAmount();
 	  Date getOrderDate();
 	  int getTotalRecord();

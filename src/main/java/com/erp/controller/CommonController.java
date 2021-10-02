@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.erp.dto.SelectItem;
 import com.erp.entity.Customer;
+import com.erp.entity.Supplier;
 import com.erp.service.CommonService;
 
 @CrossOrigin("*")
@@ -35,4 +36,15 @@ public class CommonController {
 	public BigDecimal getTotalCreditValue(@RequestParam("id") Long id) {
 		return commonService.getTotalCredit(id);
 	}
+	
+	@GetMapping("/get-total-purchase-credit")
+	public BigDecimal getTotalPurchaseCreditValue(@RequestParam("supplierId") Long supplierId) {
+		return commonService.getTotalPurchaseCredit(supplierId);
+	}
+	
+	@GetMapping("/get-supplier-by-name")
+	public List<Supplier> getSupplierByName(@RequestParam("supplierName") String supplierName) {
+		return commonService.getSupplierByName(supplierName);
+	}
+	
 }

@@ -12,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -38,12 +39,6 @@ public class Sale extends BaseEntity implements Serializable {
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 
-	@Column(name = "debit")
-	private BigDecimal debit;
-
-	@Column(name = "credit")
-	private BigDecimal credit;
-
 	@Column(name = "total_amount")
 	private BigDecimal totalAmount;
 
@@ -57,8 +52,8 @@ public class Sale extends BaseEntity implements Serializable {
 	private String remark;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "sale")
-	private List<SaleItem> saleItem;
+	private List<SaleItem> saleItemList;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "sale")
-	private List<Payment> payment;
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "sale")
+	private Payment payment;
 }

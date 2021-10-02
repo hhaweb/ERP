@@ -24,7 +24,9 @@ public class Item extends BaseEntity implements Serializable{
 	
 	@Column(name = "name")
 	private String name;
-	@Column(name = "price")
-	private BigDecimal price;
+	@Column(name = "sell_price")
+	private BigDecimal sellPrice;
+	@Column(name = "buy_price")
+	private BigDecimal buyPrice;
 
 }

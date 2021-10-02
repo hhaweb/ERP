@@ -31,7 +31,7 @@ public class PurchaseItem extends BaseEntity implements Serializable{
 	@JoinColumn(name="purchase_id")
 	private Purchase purchase;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="item_id")
 	private Item item;
 	

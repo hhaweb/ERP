@@ -12,8 +12,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class SaleListDto {
 	
-	BigDecimal totalCredit;
-	BigDecimal totalDebit;
+	BigDecimal totalCreditAmount;
+	BigDecimal totalPayAmount;
 	BigDecimal totalSellAmount;
 	List<SaleHeaderList> saleItemList;
 }

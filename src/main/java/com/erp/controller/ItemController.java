@@ -39,15 +39,15 @@ public class ItemController {
 	}
 	
 	@GetMapping("/item-list")
-	public List<Item> getAllItem() {
-		return itemServices.getAllItems();
+	public List<Item> getAllItem(@RequestParam("checkClosing") int checkClosing) {
+		boolean check = checkClosing == 1 ? true : false;
+		return itemServices.getAllItems(check);
 	}
 	
 	@GetMapping("/item-delete")
-	public GenericResponse deleteItem(@RequestParam("Id") Long Id) {
+	public GenericResponse deleteItem(@RequestParam("itemId") Long Id) {
 		try {
-			itemServices.deleteItem(Id);
-			return new GenericResponse(true, ResponseMessage.DELETE_SUCCESS);
+			return itemServices.deleteItem(Id);
 		}catch(Exception ex) {
 			ex.printStackTrace();
 			return new GenericResponse(true, ResponseMessage.INTERNAL_ERROR);

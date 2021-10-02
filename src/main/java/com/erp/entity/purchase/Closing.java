@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import com.erp.entity.BaseEntity;
 import com.erp.entity.Item;
@@ -16,6 +18,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 @Entity
+@Table(name = "closing")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -26,7 +29,7 @@ public class Closing extends BaseEntity implements Serializable{
 	 */
 	private static final long serialVersionUID = -8746531341862223531L;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="item_id")
 	private Item item;
 	

@@ -9,9 +9,13 @@ import org.springframework.stereotype.Service;
 
 import com.erp.dto.SelectItem;
 import com.erp.entity.Customer;
+import com.erp.entity.Supplier;
 import com.erp.repository.CommonRepository;
 import com.erp.repository.CustomerRepository;
 import com.erp.repository.SaleRepository;
+import com.erp.repository.SupplierRepository;
+import com.erp.repository.purchase.PurchasePaymentRepository;
+import com.erp.repository.purchase.PurchaseRepository;
 @Service
 public class CommonServiceImpl implements CommonService {
 
@@ -21,6 +25,12 @@ public class CommonServiceImpl implements CommonService {
 	private CustomerRepository customerRepo;
 	@Autowired
 	private SaleRepository saleRepo;
+	@Autowired
+	private PurchaseRepository purchaseRepo;
+	@Autowired
+	private PurchasePaymentRepository purchasePaymentRepo;
+	@Autowired
+	private SupplierRepository supplierRepo;
 	
 	@Override
 	public List<SelectItem> getCommonDropDownList(String type) {
@@ -47,5 +57,18 @@ public class CommonServiceImpl implements CommonService {
 		BigDecimal totalSaleAmount = saleRepo.getTotalSaleAmount(id);
 		BigDecimal totalPayAmount = saleRepo.getTotalPayAmount(id);	
 		return totalSaleAmount.subtract(totalPayAmount);
+	}
+
+	@Override
+	public BigDecimal getTotalPurchaseCredit(Long supplierId) {
+		BigDecimal buyTotal = purchaseRepo.getTotalBuyAmount(supplierId);
+		BigDecimal payTotal = purchasePaymentRepo.getTotalPayAmount(supplierId);
+		return buyTotal.subtract(payTotal);
+	}
+
+	@Override
+	public List<Supplier> getSupplierByName(String supplierName) {
+		// TODO Auto-generated method stub
+		return supplierRepo.findByNameIgnoreCaseContaining(supplierName);
 	}
 }

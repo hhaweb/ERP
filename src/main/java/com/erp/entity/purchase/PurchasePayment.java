@@ -29,11 +29,11 @@ public class PurchasePayment extends BaseEntity implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "supplier_id")
 	private Supplier supplier;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "purchase_id")
 	private Purchase purchase;
 	

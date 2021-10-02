@@ -53,5 +53,33 @@
 		]
 		
 	},
+	{
+		"label": "Purchase",
+		"icon": "pi pi-shopping-cart",
+		"items": [
+			{
+				"label": "Purchase List",
+				"icon": "pi pi-fw pi-list",
+				"routerLink": [
+				"/purchase/purchase-list"
+				]
+			},
+			{
+				"label": "Purchase Payment List",
+				"icon": "pi pi-fw pi-list",
+				"routerLink": [
+				"/purchase/purchase-payment-list"
+				]
+			},
+			{
+				"label": "Closing List",
+				"icon": "pi pi-fw pi-list",
+				"routerLink": [
+				"/purchase/closing-list"
+				]
+			}
+		]
+		
+	},
 	  
 ]

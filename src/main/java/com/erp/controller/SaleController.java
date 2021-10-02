@@ -41,8 +41,7 @@ public class SaleController {
 	@PostMapping("/sale-save")
 	public GenericResponse saveSale(@RequestBody SaleDto saleDto) {
 		try {
-			saleService.createSale(saleDto);
-			return new GenericResponse(true, ResponseMessage.SAVE_SUCCESS);
+			return saleService.createSale(saleDto);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new GenericResponse(false, ResponseMessage.INTERNAL_ERROR);
@@ -73,8 +72,7 @@ public class SaleController {
 	@GetMapping("/delete-sale")
 	public GenericResponse delete(@RequestParam("saleId") Long saleId) {
 		try {
-			saleService.deleteSale(saleId);
-			return new GenericResponse(true, ResponseMessage.SAVE_SUCCESS);
+			return saleService.deleteSale(saleId);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new GenericResponse(false, ResponseMessage.INTERNAL_ERROR);
@@ -85,8 +83,8 @@ public class SaleController {
 	public void exportSaleHeaderList(HttpServletResponse response, @RequestBody SaleListSearchDto searchModel) {
 		searchModel.setType("export");
 		SaleListDto saleListDto = saleService.getSaleHeaderListByLazyLoad(searchModel);
-		ExcelWriter.exportSaleList(response, saleListDto.getSaleItemList(), saleListDto.getTotalCredit(),
-				saleListDto.getTotalDebit(), saleListDto.getTotalSellAmount());
+		ExcelWriter.exportSaleList(response, saleListDto.getSaleItemList(), saleListDto.getTotalCreditAmount(),
+				saleListDto.getTotalPayAmount(), saleListDto.getTotalSellAmount());
 	}
 	@PostMapping("/save-payment")
 	public GenericResponse savePayment(@RequestBody PaymentDto paymentDto) {
@@ -108,6 +106,18 @@ public class SaleController {
 			throw e;
 		}
 	}
+	
+	@GetMapping("/get-payment-id")
+	public PaymentDto getPaymentById(@RequestParam("paymentId") Long paymentId) {
+		try {
+			return saleService.getPaymentById(paymentId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
 	
 	@GetMapping("/delete-payment")
 	public GenericResponse deletePayment(@RequestParam("paymentId") Long paymentId) {

@@ -12,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.erp.entity.BaseEntity;
@@ -31,7 +32,7 @@ public class Purchase extends BaseEntity implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -8580243056673506451L;
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="supplier_id")
 	private Supplier supplier;
 	
@@ -42,8 +43,7 @@ public class Purchase extends BaseEntity implements Serializable{
 	private BigDecimal  buyTotal;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "purchase")
-	private List<PurchaseItem> purchaseList;
+	private List<PurchaseItem> purchaseItemList;
 		
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "purchase")
-	private List<PurchasePayment> purchasePaymentList;
+	
 }
